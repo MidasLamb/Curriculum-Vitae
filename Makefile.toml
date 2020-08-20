@@ -25,5 +25,5 @@ run_task = "build_css"
 watch = {watch = ["./scss"]}
 
 [tasks.serve]
-args = ["-i", "./static/", "-p", "8080", "--nocache", "--try-file", "./static/index.html"]
+args = ["-i", "./static/", "-p", "8081", "--nocache", "--try-file", "./static/index.html"]
 command = "simple-http-server"

@@ -305,7 +305,7 @@ Leuven. It parses the courses from a webpage provided by the KU Leuven.",
             Project {
                 name: "Curriculum Vitae",
                 used_technologies: vec![Rust, Yew, Wasm, CSS3, HTML5, Sass],
-                link: Some("/#"),
+                link: Some("./#"),
                 summary: r#"A CV is made of up two parts: Data & Representation. "Traditional" ways of making a CV (e.g. Word) do not account
 for these. Data and representation are mixed, which I didn't like. That's why I decided to create my CV as a "webpage", which is then printed to pdf.
 This lets me vary data (e.g. adding a new project) and representation (e.g. CSS), separately, without much hassle.
