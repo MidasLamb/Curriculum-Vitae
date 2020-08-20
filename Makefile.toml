@@ -1,0 +1,29 @@
+[tasks.build_all]
+run_task = [
+  {name = ["build_wasm", "build_css"]},
+]
+
+[tasks.format]
+args = ["fmt"]
+command = "cargo"
+
+[tasks.build_wasm]
+args = ["build", "--dev", "--target", "web", "--out-name", "wasm", "--out-dir", "./static", "--no-typescript"]
+command = "wasm-pack"
+dependencies = ["format"]
+
+[tasks.watch_wasm]
+run_task = "build_wasm"
+watch = {watch = ["./src"]}
+
+[tasks.build_css]
+args = ["./scss/main.scss", "./static/style/main.css"]
+command = "grass"
+
+[tasks.watch_css]
+run_task = "build_css"
+watch = {watch = ["./scss"]}
+
+[tasks.serve]
+args = ["-i", "./static/", "-p", "8080", "--nocache", "--try-file", "./static/index.html"]
+command = "simple-http-server"

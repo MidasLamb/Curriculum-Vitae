@@ -1,0 +1,42 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          persist-credentials: false # Required for Deploy to work.
+
+    - uses: jetli/wasm-pack-action@v0.3.0
+
+    - name: Make directory structure
+      run: mkdir static/style
+
+    - name: Build WASM 🏗️🕸️
+      run: wasm-pack build --target web --out-name wasm --out-dir "static" --no-typescript
+
+    - name: Compile CSS from SCSS files 🏗️📃
+      uses: gha-utilities/sass-build@v0.2.6
+      with:
+        source: scss/main.scss
+        destination: static/style/main.css
+
+    - name: Prepare for deploy 🔧
+      run: rm static/.gitignore # wasm-pack build adds a .gitignore with * as content, causing deploy to think nothing is to be deployed.
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@3.5.9
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: static # The folder the action should deploy.

@@ -1,0 +1,81 @@
+$divider-color: #c2c2c2;
+
+.page {
+    @media screen {
+        width: 210mm;
+        height: 296mm;
+        background: white;
+        box-shadow: gray 1px 1px 3px;
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+    }
+
+    @media print {
+        &:not(:last-child) {
+            page-break-after: always;
+        }
+    }
+
+    &:not(:first-child) {
+        padding-top: 2rem;
+    }
+
+    margin: 0;
+    padding: 0;
+}
+
+@page {
+    margin: 0;
+    margin-top: 5mm;
+    margin-bottom: 5mm;
+}
+
+@page:first {
+    margin-top: 5mm;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    @media screen {
+        display: flex;
+        justify-content: center;
+        background: rgb(189, 189, 189);
+        min-height: 100vh;
+    }
+}
+
+body {
+    font-family: sans-serif;
+    --base-margin-left: 15mm;
+    --base-margin-right: 15mm;
+    --base-margin-top: 10mm;
+    @media screen {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    color: hsl(0, 0%, 13%);
+}
+
+hr {
+    height:0; 
+    border:0; 
+    border-top:1px solid; 
+    border-color: $divider-color;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+}
+
+
+@import "title";
+@import "person-details";
+@import "experience";
+@import "languages";
+@import "skills";
+@import "projects";

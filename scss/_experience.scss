@@ -1,0 +1,64 @@
+.experience {
+    margin-left: var(--base-margin-left);
+    margin-right: var(--base-margin-left);
+
+    .experience-container, .education-container {
+        position: relative;
+    }
+
+    .date {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: rgb(104, 104, 104);
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+    .header {
+        color: gray;
+        font-weight: 400;
+        font-size: 0.8rem;
+    }
+
+    &.work {
+        .experience-container {
+            margin-bottom: 1rem;
+        }
+
+        .company > .value {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .job-title > .value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .summary {
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    &.education {
+        .education-container {
+            margin-bottom: 1rem;
+        }
+        .degree {
+            .value {
+                font-size: 1.3em;
+            }
+        }
+        .honors {
+            font-size: 0.9em;
+            color: gray;
+            margin-left: 0.5em;
+        }
+        .thesis .value {
+            font-size: 0.9em;
+        }
+    }
+
+}

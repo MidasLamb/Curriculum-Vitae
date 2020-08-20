@@ -1,0 +1,38 @@
+.projects {
+    margin-left: var(--base-margin-left);
+    margin-right: var(--base-margin-left);
+
+    .project-container {
+        margin-bottom: 1.125rem;
+    }
+
+    .project-header {
+        &>div {
+            display: inline-block;
+        }
+        .project-name {
+            font-size: 1.25rem;
+        }
+        .project-link {
+            margin-left: 0.5rem;
+        }
+
+
+    }
+
+
+
+    .used-technologies {
+        color: gray;
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .summary {
+        font-size: 0.9rem;
+        padding-left: 0.3rem;
+        margin-left: 0.5rem;
+        border-left: 1px solid $divider-color;
+    }
+}
