@@ -300,7 +300,7 @@ transactions. Most of the site required a KU Leuven SSO Login.",
 course of the master they want, which is necessary because some dutch courses require you to
 take the english lectures, but they don't appear in the students their timetable provided by the KU
 Leuven. It parses the courses from a webpage provided by the KU Leuven.",
-                priority: 2,
+                priority: 4,
             },
             Project {
                 name: "Curriculum Vitae",
@@ -310,7 +310,16 @@ Leuven. It parses the courses from a webpage provided by the KU Leuven.",
 for these. Data and representation are mixed, which I didn't like. That's why I decided to create my CV as a "webpage", which is then printed to pdf.
 This lets me vary data (e.g. adding a new project) and representation (e.g. CSS), separately, without much hassle.
 This CV is created through with Rust (Yew for building the wasm/html, grass for turning the Sass into CSS)."#,
-                priority: 1
+                priority: 3
+            },
+            Project {
+                name: "Rs Wiki Quest Checker",
+                used_technologies: vec![JavaScript, HTML5, CSS3],
+                link: Some("https://github.com/MidasLamb/RS-Wiki-Quest-Checker"),
+                summary: r#"A Chrome and Firefox extension which will visualize the users progress relative to the quest (w.r.t. skills, quests completed,...)
+and whether or not the user is able to start the quest on the Wiki for the MMORPG Runescape (specifically Runescape 3). Currently still has over 300 weekly users.
+Further growth is stunted because the Wiki has been moved to a new platform which integrates what this extension does directly into the Wiki itself."#,
+                priority: 2
             }
         ]
     }
