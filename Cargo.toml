@@ -12,3 +12,6 @@ crate-type = ["cdylib", "rlib"]
 chrono = "0.4"
 wasm-bindgen = "0.2.67"
 yew = {version = "0.17", default-features = false, features = ["web_sys"]}
+
+[build-dependencies]
+grass = "0.10"

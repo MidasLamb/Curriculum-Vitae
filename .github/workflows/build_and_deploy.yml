@@ -25,12 +25,6 @@ jobs:
     - name: Build WASM 🏗️🕸️
       run: wasm-pack build --target web --out-name wasm --out-dir "static" --no-typescript
 
-    - name: Compile CSS from SCSS files 🏗️📃
-      uses: gha-utilities/sass-build@v0.2.6
-      with:
-        source: scss/main.scss
-        destination: static/style/main.css
-
     - name: Prepare for deploy 🔧
       run: rm static/.gitignore # wasm-pack build adds a .gitignore with * as content, causing deploy to think nothing is to be deployed.
 
