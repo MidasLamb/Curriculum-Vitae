@@ -1,0 +1,24 @@
+name: Check build
+
+on:
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: jetli/wasm-pack-action@v0.3.0
+
+    - name: Make directory structure
+      run: mkdir static/style
+
+    - name: Build WASM 🏗️🕸️
+      run: wasm-pack build --target web --out-name wasm --out-dir "static" --no-typescript
