@@ -1,5 +1,4 @@
 /target
 Cargo.lock
 
-/static/*
-!/static/index.html
+/dist

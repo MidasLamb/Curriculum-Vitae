@@ -9,16 +9,18 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - uses: jetli/wasm-pack-action@v0.3.0
+    - name: Install latest stable WASM
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: wasm32-unknown-unknown
 
-    - name: Make directory structure
-      run: mkdir static/style
+    - uses: jetli/trunk-action@v0.1.0
 
     - name: Build WASM 🏗️🕸️
-      run: wasm-pack build --target web --out-name wasm --out-dir "static" --no-typescript
+      run: trunk build
