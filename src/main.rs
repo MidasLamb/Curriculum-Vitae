@@ -1,6 +1,4 @@
 #![recursion_limit = "1024"]
-
-use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
 mod data;
@@ -116,9 +114,8 @@ impl Component for Model {
     }
 }
 
-#[wasm_bindgen(start)]
-pub fn run_app() {
-    App::<Model>::new().mount_to_body();
+fn main() {
+    yew::start_app::<Model>();
 }
 
 impl Htmlify for data::PersonLink {

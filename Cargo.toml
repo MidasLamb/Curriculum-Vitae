@@ -5,13 +5,6 @@ edition = "2018"
 name = "curriculum-vitae"
 version = "0.1.0"
 
-[lib]
-crate-type = ["cdylib", "rlib"]
-
 [dependencies]
 chrono = "0.4"
-wasm-bindgen = "0.2.67"
-yew = {version = "0.17", default-features = false, features = ["web_sys"]}
-
-[build-dependencies]
-grass = "0.10"
+yew = "0.18"
