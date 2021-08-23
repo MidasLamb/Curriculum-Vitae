@@ -27,15 +27,14 @@
   margin-top: 5mm;
   margin-bottom: 5mm;
 }
-
 @page :first {
   margin-top: 5mm;
 }
-
 html, body {
   margin: 0;
   padding: 0;
 }
+
 @media screen {
   html {
     display: flex;
