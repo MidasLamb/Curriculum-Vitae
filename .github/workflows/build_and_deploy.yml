@@ -2,31 +2,39 @@ name: Build and deploy
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  checkout:
+    name: Checkout code
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install latest stable WASM
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        target: wasm32-unknown-unknown
+      - name: Install latest stable WASM
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
 
-    - uses: jetli/trunk-action@v0.1.0
+      - name: Download trunk
+        uses: jetli/trunk-action@v0.1.0
 
-    - name: Build WASM 🏗️🕸️
-      run: trunk build --public-url="Curriculum-Vitae"
+      - name: Build WASM 🏗️🕸️
+        run: trunk build --public-url="Curriculum-Vitae"
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: dist # The folder the action should deploy.
+      - name: Deploy 🚀
+        if: github.event_name == 'push' # Only when pushed, which is configured only on the master branch.
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
