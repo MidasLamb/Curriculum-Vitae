@@ -3,8 +3,8 @@ use chrono::NaiveDate;
 pub(crate) struct Me {
     pub(crate) first_name: &'static str,
     pub(crate) last_name: &'static str,
-    pub(crate) location: &'static str,
-    pub(crate) birth_date: NaiveDate,
+    pub(crate) _location: &'static str,
+    pub(crate) _birth_date: NaiveDate,
     pub(crate) contact_email: &'static str,
     pub(crate) links: Vec<PersonLink>,
     pub(crate) scholary_experiences: Vec<ScholaryExperience>,
@@ -19,8 +19,8 @@ impl Default for Me {
         let mut me = Me {
             first_name: "Midas",
             last_name: "Lambrichts",
-            location: "Turnhout",
-            birth_date: NaiveDate::from_ymd(1996, 02, 06),
+            _location: "Turnhout",
+            _birth_date: NaiveDate::from_ymd(1996, 02, 06),
             contact_email: "midaslamb@gmail.com",
             links: PersonLink::get_all(),
             scholary_experiences: ScholaryExperience::get_all(),
@@ -94,7 +94,7 @@ impl ScholaryExperience {
             degree: "Bachelor of informatics",
             honors: Some("Cum Laude"),
             thesis_title: None,
-        },ScholaryExperience {
+        }, ScholaryExperience {
             start_date: NaiveDate::from_ymd(2017, 9, 25),
             end_date: Some(NaiveDate::from_ymd(2019, 6, 30)),
             institution: "KU Leuven",
@@ -139,12 +139,20 @@ to GSuite, introducing Git (and GitHub) for version control,...",
             },
             WorkExperience {
                 start_date: NaiveDate::from_ymd(2019, 07, 15),
-                end_date: None,
+                end_date: Some(NaiveDate::from_ymd(2021, 07, 31)),
                 title: "Software Engineer",
                 company: "Dover Fueling Solutions",
-                summary: r"Responsible for moving data management from C++ to C# in a Point of Sale (POS) system,
+                summary: r"Responsible for migrating data management from C++ to C# in a Point of Sale (POS) system,
 and ensuring that in less-than-ideal network conditions, the data is synchronised with the Cloud. Other responsibilities include 
-maintaining a Web Server, and investigating improvements. My team worked in an Agile fashion (Scrum), with two-week sprints.",
+maintaining a Web Server, investigating improvements, and working on the frontend (Angular). My team worked in an Agile fashion (Scrum), with two-week sprints.",
+            },
+            WorkExperience {
+                start_date: NaiveDate::from_ymd(2021, 08, 1),
+                end_date: None,
+                title: "Senior Software Engineer",
+                company: "Dover Fueling Solutions",
+                summary: r"Responsible for migrating data management from C++ to C# in a POS system. Ensure data-synchronicity between the POS and the Cloud.
+Also training/guiding colleagues in general development practices (PR etiquette, Agile, usage of git) as well as more project-specific trainings in backend and frontend.",
             },
         ]
     }
@@ -274,6 +282,13 @@ impl Project {
         use Technology::*;
         vec![
             Project {
+                name: "Speaker at RustConf 2021",
+                used_technologies: vec![Rust, Fuzzing],
+                link: Some("https://rustconf.com/speakers/midas-lambrichts"),
+                summary: "Give a talk at RustConf 2021 about how one can use Fuzzing to drive development for a domain while having limited domain knowledge.",
+                priority: 5
+            },
+            Project {
                 name: "KBBC T&T Turnhout",
                 used_technologies: vec![PHP, Laravel, Bootstrap, JavaScript, CSS3, HTML5, VueJs],
                 link: Some("https://github.com/MidasLamb/TTTurnhout"),
@@ -337,6 +352,7 @@ pub(crate) enum Technology {
     Yew,
     Wasm,
     Sass,
+    Fuzzing,
 }
 
 impl std::string::ToString for Technology {
@@ -353,6 +369,7 @@ impl std::string::ToString for Technology {
             Technology::Yew => "Yew",
             Technology::Wasm => "Wasm",
             Technology::Sass => "Sass",
+            Technology::Fuzzing => "Fuzzing",
         };
         v.to_owned()
     }
