@@ -23,7 +23,7 @@ jobs:
     - uses: jetli/trunk-action@v0.1.0
 
     - name: Build WASM 🏗️🕸️
-      run: trunk build
+      run: trunk build --public-url="curriculum-vitae"
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.4
