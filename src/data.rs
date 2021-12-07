@@ -12,6 +12,8 @@ pub(crate) struct Me {
     pub(crate) languages: Vec<Language>,
     pub(crate) skills: Vec<Skill>,
     pub(crate) projects: Vec<Project>,
+    pub(crate) side_projects: Vec<SideProject>,
+    pub(crate) open_source_contributions: Vec<OpenSourceContribution>,
 }
 
 impl Default for Me {
@@ -28,6 +30,8 @@ impl Default for Me {
             languages: Language::get_all(),
             skills: Skill::get_all(),
             projects: Project::get_all(),
+            side_projects: SideProject::get_all(),
+            open_source_contributions: OpenSourceContribution::get_all(),
         };
 
         me.scholary_experiences.sort_by_key(|k| k.start_date);
@@ -38,6 +42,12 @@ impl Default for Me {
 
         me.projects.sort_by_key(|k| k.priority);
         me.projects.reverse();
+
+        me.side_projects.sort_by_key(|k| k.priority);
+        me.side_projects.reverse();
+
+        me.open_source_contributions.sort_by_key(|k| k.priority);
+        me.open_source_contributions.reverse();
 
         me
     }
@@ -372,5 +382,71 @@ impl std::string::ToString for Technology {
             Technology::Fuzzing => "Fuzzing",
         };
         v.to_owned()
+    }
+}
+
+pub(crate) struct SideProject {
+    pub(crate) name: &'static str,
+    pub(crate) used_technologies: Vec<Technology>,
+    pub(crate) summary: &'static str,
+    pub(crate) priority: usize,
+}
+impl SideProject {
+    pub(crate) fn get_all() -> Vec<Self> {
+        use Technology::*;
+        vec![
+            SideProject {
+                name: "SQLite clone in Rust",
+                used_technologies: vec![Rust],
+                summary: "Created a small POC that could read and update an SQLite file, as long as it didn't need to update the B-Tree. A remnant of this side project can be found in my crate sqlite_varint.",
+                priority: 1
+            },
+            SideProject {name: "", used_technologies: vec![Rust], summary: todo!(), priority: todo!() }
+        ]
+    }
+}
+
+pub(crate) struct OpenSourceContribution {
+    pub(crate) repo_name: &'static str,
+    pub(crate) link: &'static str,
+    pub(crate) summary: &'static str,
+    pub(crate) priority: usize,
+}
+
+impl OpenSourceContribution {
+    pub(crate) fn get_all() -> Vec<Self> {
+        use Technology::*;
+        vec![
+            OpenSourceContribution {
+                repo_name: "rust",
+                link: "https://github.com/rust-lang/rust/pull/83535/files",
+                summary: "Fixed a small ICE.",
+                priority: 1
+            },
+            OpenSourceContribution {
+                repo_name: "azure-sdk-for-rust",
+                link: "https://github.com/Azure/azure-sdk-for-rust/pulls?q=is%3Apr+author%3AMidasLamb",
+                summary: "Fixed misalignment between REST api & implementation in the SDK (also fixed small other issues in other PRs)",
+                priority: 2
+            },
+            OpenSourceContribution {
+                repo_name: "wasmer",
+                link: "https://github.com/wasmerio/wasmer/pulls?q=is%3Apr+author%3AMidasLamb",
+                summary: "Made modifications towards getting the wasmer runtime up & running for 32bit Windows machines.",
+                priority: 3
+            },
+            OpenSourceContribution {
+                repo_name: "grass",
+                link: "https://github.com/connorskees/grass/pulls?q=is%3Apr+author%3AMidasLamb+",
+                summary: "Fix small issues found by fuzzing this implementation agains the official Sass implementation (dart-sass)",
+                priority: 4
+            },
+            OpenSourceContribution {
+                repo_name: "async-graphql",
+                link: "https://github.com/async-graphql/async-graphql/pull/232",
+                summary: "Small performance improvement",
+                priority: 5
+            },
+        ]
     }
 }
