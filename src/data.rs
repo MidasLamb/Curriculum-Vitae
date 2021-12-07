@@ -401,7 +401,12 @@ impl SideProject {
                 summary: "Created a small POC that could read and update an SQLite file, as long as it didn't need to update the B-Tree. A remnant of this side project can be found in my crate sqlite_varint.",
                 priority: 1
             },
-            SideProject {name: "", used_technologies: vec![Rust], summary: todo!(), priority: todo!() }
+            SideProject {
+                name: "Re-implement company internal RPC in Rust",
+                used_technologies: vec![Rust],
+                summary: "Re-implemented an internal RPC protocol in Rust, making use of bindgen to port message definitions. And using tokio_codec as a basis to implement communication.",
+                priority: 2
+            }
         ]
     }
 }
