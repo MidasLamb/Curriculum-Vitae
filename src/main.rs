@@ -43,6 +43,8 @@ impl Component for Model {
         let languages = self.person.languages.view();
         let skills = self.person.skills.view();
         let projects = self.person.projects.view();
+        let side_projects = self.person.side_projects.view();
+        let osc = self.person.open_source_contributions.view();
 
         html! {
             <>
@@ -109,6 +111,24 @@ impl Component for Model {
                         </div>
                     </main>
                 </div>
+                <div class="page">
+                    <main>
+                        <div class="side-projects">
+                            <h2>{"Side Projects"}</h2>
+                            <h3>{"Smaller projects which don't have any code publicly available, were cut short, or were left uncompleted for other reasons"}</h3>
+                            <div class="container">
+                                {side_projects}
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="osc">
+                            <h2>{"Open Source Contributions"}</h2>
+                            <div class="container">
+                                {osc}
+                            </div>
+                        </div>
+                    </main>
+                </div>
             </>
         }
     }
@@ -153,9 +173,9 @@ impl Htmlify for data::WorkExperience {
                     <span class="header">{"Job title: "}</span>
                     <span class="value">{self.title}</span>
                 </div>
-                <div class="summary">
+                <summary>
                     {self.summary}
-                </div>
+                </summary>
                 <div class="date">
                     {start_date}{" - "}{end_date}
                 </div>
@@ -268,9 +288,48 @@ impl Htmlify for data::Project {
                     }
                 </div>
                 <div class="used-technologies">{technologies}</div>
-                <div class="summary">
+                <summary>
                     {self.summary}
+                </summary>
+            </div>
+        }
+    }
+}
+
+impl Htmlify for data::SideProject {
+    fn view(&self) -> Html {
+        let technologies = self
+            .used_technologies
+            .iter()
+            .map(|t| t.to_string())
+            .collect::<Vec<_>>()
+            .join(", ");
+
+        html! {
+            <div class="side-project-container">
+                <div class="side-project-header">
+                    <div class="side-project-name">{self.name}</div>
                 </div>
+                <div class="used-technologies">{technologies}</div>
+                <summary>
+                    {self.summary}
+                </summary>
+            </div>
+        }
+    }
+}
+
+impl Htmlify for data::OpenSourceContribution {
+    fn view(&self) -> Html {
+        html! {
+            <div class="osc-container">
+                <div class="osc-header">
+                    <div class="osc-repo-name">{self.repo_name}</div>
+                    <a href=self.link class="osc-link" target="_blank">{"Link"}</a>
+                </div>
+                <summary>
+                    {self.summary}
+                </summary>
             </div>
         }
     }

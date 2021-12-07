@@ -1,28 +1,21 @@
-.projects {
+.osc {
     margin-left: var(--base-margin-left);
     margin-right: var(--base-margin-left);
 
-    .project-container {
+    .osc-container {
         margin-bottom: 1.125rem;
     }
 
-    .project-header {
+    .osc-header {
         & > div {
             display: inline-block;
         }
-        .project-name {
+        .osc-repo-name {
             font-size: 1.25rem;
         }
-        .project-link {
+        .osc-link {
             margin-left: 0.5rem;
         }
-    }
-
-    .used-technologies {
-        color: gray;
-        font-size: 0.8rem;
-        margin-left: 0.5rem;
-        margin-bottom: 0.3rem;
     }
 
     summary {

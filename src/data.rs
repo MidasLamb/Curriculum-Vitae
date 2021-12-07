@@ -44,10 +44,8 @@ impl Default for Me {
         me.projects.reverse();
 
         me.side_projects.sort_by_key(|k| k.priority);
-        me.side_projects.reverse();
 
         me.open_source_contributions.sort_by_key(|k| k.priority);
-        me.open_source_contributions.reverse();
 
         me
     }
@@ -406,6 +404,12 @@ impl SideProject {
                 used_technologies: vec![Rust],
                 summary: "Re-implemented an internal RPC protocol in Rust, making use of bindgen to port message definitions. And using tokio_codec as a basis to implement communication.",
                 priority: 2
+            },
+            SideProject {
+                name: "Create CLI to automate repetitive tasks",
+                used_technologies: vec![Rust],
+                summary: "Create a CLI using clap to automate repetitive tasks that were required during my day-to-day work at Dover.",
+                priority: 2
             }
         ]
     }
@@ -420,34 +424,33 @@ pub struct OpenSourceContribution {
 
 impl OpenSourceContribution {
     pub fn get_all() -> Vec<Self> {
-        use Technology::*;
         vec![
             OpenSourceContribution {
-                repo_name: "rust",
+                repo_name: "rust-lang/rust",
                 link: "https://github.com/rust-lang/rust/pull/83535/files",
                 summary: "Fixed a small ICE.",
                 priority: 1
             },
             OpenSourceContribution {
-                repo_name: "azure-sdk-for-rust",
+                repo_name: "Azure/azure-sdk-for-rust",
                 link: "https://github.com/Azure/azure-sdk-for-rust/pulls?q=is%3Apr+author%3AMidasLamb",
                 summary: "Fixed misalignment between REST api & implementation in the SDK (also fixed small other issues in other PRs)",
                 priority: 2
             },
             OpenSourceContribution {
-                repo_name: "wasmer",
+                repo_name: "wasmerio/wasmer",
                 link: "https://github.com/wasmerio/wasmer/pulls?q=is%3Apr+author%3AMidasLamb",
                 summary: "Made modifications towards getting the wasmer runtime up & running for 32bit Windows machines.",
                 priority: 3
             },
             OpenSourceContribution {
-                repo_name: "grass",
+                repo_name: "connorskees/grass",
                 link: "https://github.com/connorskees/grass/pulls?q=is%3Apr+author%3AMidasLamb+",
-                summary: "Fix small issues found by fuzzing this implementation agains the official Sass implementation (dart-sass)",
+                summary: "Fix small issues found by fuzzing against the official Sass implementation (dart-sass)",
                 priority: 4
             },
             OpenSourceContribution {
-                repo_name: "async-graphql",
+                repo_name: "async-graphql/async-graphql",
                 link: "https://github.com/async-graphql/async-graphql/pull/232",
                 summary: "Small performance improvement",
                 priority: 5
