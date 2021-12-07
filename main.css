@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head>
-    <base href="/Curriculum-Vitae/">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=800px, initial-scale=0.45">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Curriculum Vitae: Midas Lambrichts</title>
-    <style type="text/css">.page {
+.page {
   margin: 0;
   padding: 0;
 }
@@ -313,11 +307,3 @@ h2 {
   margin-left: 0.5rem;
   border-left: 1px solid #c2c2c2;
 }
-</style>
-
-<link rel="preload" href="/Curriculum-Vitae/index-9d211ed7fe446f50_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/Curriculum-Vitae/index-9d211ed7fe446f50.js"></head>
-
-<body>
-
-<script type="module">import init from '/Curriculum-Vitae/index-9d211ed7fe446f50.js';init('/Curriculum-Vitae/index-9d211ed7fe446f50_bg.wasm');</script></body></html>
