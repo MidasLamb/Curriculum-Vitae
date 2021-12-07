@@ -1,19 +1,19 @@
 use chrono::NaiveDate;
 
-pub(crate) struct Me {
-    pub(crate) first_name: &'static str,
-    pub(crate) last_name: &'static str,
-    pub(crate) _location: &'static str,
-    pub(crate) _birth_date: NaiveDate,
-    pub(crate) contact_email: &'static str,
-    pub(crate) links: Vec<PersonLink>,
-    pub(crate) scholary_experiences: Vec<ScholaryExperience>,
-    pub(crate) work_experiences: Vec<WorkExperience>,
-    pub(crate) languages: Vec<Language>,
-    pub(crate) skills: Vec<Skill>,
-    pub(crate) projects: Vec<Project>,
-    pub(crate) side_projects: Vec<SideProject>,
-    pub(crate) open_source_contributions: Vec<OpenSourceContribution>,
+pub struct Me {
+    pub first_name: &'static str,
+    pub last_name: &'static str,
+    pub _location: &'static str,
+    pub _birth_date: NaiveDate,
+    pub contact_email: &'static str,
+    pub links: Vec<PersonLink>,
+    pub scholary_experiences: Vec<ScholaryExperience>,
+    pub work_experiences: Vec<WorkExperience>,
+    pub languages: Vec<Language>,
+    pub skills: Vec<Skill>,
+    pub projects: Vec<Project>,
+    pub side_projects: Vec<SideProject>,
+    pub open_source_contributions: Vec<OpenSourceContribution>,
 }
 
 impl Default for Me {
@@ -53,7 +53,7 @@ impl Default for Me {
     }
 }
 
-pub(crate) enum PersonLink {
+pub enum PersonLink {
     GitHub { username: &'static str },
     LinkedIn { link_name: &'static str },
 }
@@ -71,14 +71,14 @@ impl PersonLink {
         ]
     }
 
-    pub(crate) fn linkify(&self) -> String {
+    pub fn linkify(&self) -> String {
         match self {
             PersonLink::GitHub { username: u } => format!("https://github.com/{}/", u),
             PersonLink::LinkedIn { link_name: l } => format!("https://www.linkedin.com/in/{}/", l),
         }
     }
 
-    pub(crate) fn short_view(&self) -> String {
+    pub fn short_view(&self) -> String {
         match self {
             PersonLink::GitHub { username: u } => format!("/{}/", u),
             PersonLink::LinkedIn { link_name: l } => format!("/in/{}/", l),
@@ -86,13 +86,13 @@ impl PersonLink {
     }
 }
 
-pub(crate) struct ScholaryExperience {
-    pub(crate) start_date: NaiveDate,
-    pub(crate) end_date: Option<NaiveDate>,
-    pub(crate) institution: &'static str, // TODO: Turn into enum?
-    pub(crate) degree: &'static str,      // TODO: Turn into enum?
-    pub(crate) honors: Option<&'static str>, // TODO: Turn into enum?
-    pub(crate) thesis_title: Option<&'static str>,
+pub struct ScholaryExperience {
+    pub start_date: NaiveDate,
+    pub end_date: Option<NaiveDate>,
+    pub institution: &'static str,    // TODO: Turn into enum?
+    pub degree: &'static str,         // TODO: Turn into enum?
+    pub honors: Option<&'static str>, // TODO: Turn into enum?
+    pub thesis_title: Option<&'static str>,
 }
 
 impl ScholaryExperience {
@@ -118,12 +118,12 @@ impl ScholaryExperience {
     }
 }
 
-pub(crate) struct WorkExperience {
-    pub(crate) start_date: NaiveDate,
-    pub(crate) end_date: Option<NaiveDate>,
-    pub(crate) title: &'static str,
-    pub(crate) company: &'static str,
-    pub(crate) summary: &'static str,
+pub struct WorkExperience {
+    pub start_date: NaiveDate,
+    pub end_date: Option<NaiveDate>,
+    pub title: &'static str,
+    pub company: &'static str,
+    pub summary: &'static str,
 }
 
 impl WorkExperience {
@@ -168,13 +168,13 @@ Also training/guiding colleagues in general development practices (PR etiquette,
     }
 }
 
-pub(crate) struct Language {
-    pub(crate) language: &'static str,
-    pub(crate) proficiency: LanguageProficiency,
+pub struct Language {
+    pub language: &'static str,
+    pub proficiency: LanguageProficiency,
 }
 
 impl Language {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         vec![
             Language {
                 language: "English",
@@ -196,7 +196,7 @@ impl Language {
     }
 }
 
-pub(crate) enum LanguageProficiency {
+pub enum LanguageProficiency {
     NativeSpeaker,
     Proficient,
     Basic,
@@ -213,14 +213,14 @@ impl std::string::ToString for LanguageProficiency {
     }
 }
 
-pub(crate) struct Skill {
-    pub(crate) name: &'static str,
-    pub(crate) ability: u8,
-    pub(crate) note: Option<SkillNote>,
+pub struct Skill {
+    pub name: &'static str,
+    pub ability: u8,
+    pub note: Option<SkillNote>,
 }
 
 impl Skill {
-    pub(crate) fn get_all() -> Vec<Skill> {
+    pub fn get_all() -> Vec<Skill> {
         vec![
             Skill {
                 name: "C#",
@@ -266,7 +266,7 @@ impl Skill {
     }
 }
 
-pub(crate) enum SkillNote {
+pub enum SkillNote {
     AutoDidact,
 }
 
@@ -279,16 +279,16 @@ impl std::string::ToString for SkillNote {
     }
 }
 
-pub(crate) struct Project {
-    pub(crate) name: &'static str,
-    pub(crate) used_technologies: Vec<Technology>,
-    pub(crate) link: Option<&'static str>,
-    pub(crate) summary: &'static str,
-    pub(crate) priority: usize,
+pub struct Project {
+    pub name: &'static str,
+    pub used_technologies: Vec<Technology>,
+    pub link: Option<&'static str>,
+    pub summary: &'static str,
+    pub priority: usize,
 }
 
 impl Project {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         use Technology::*;
         vec![
             Project {
@@ -350,7 +350,7 @@ Further growth is stunted because the Wiki has been moved to a new platform whic
     }
 }
 
-pub(crate) enum Technology {
+pub enum Technology {
     PHP,
     Laravel,
     Bootstrap,
@@ -385,14 +385,14 @@ impl std::string::ToString for Technology {
     }
 }
 
-pub(crate) struct SideProject {
-    pub(crate) name: &'static str,
-    pub(crate) used_technologies: Vec<Technology>,
-    pub(crate) summary: &'static str,
-    pub(crate) priority: usize,
+pub struct SideProject {
+    pub name: &'static str,
+    pub used_technologies: Vec<Technology>,
+    pub summary: &'static str,
+    pub priority: usize,
 }
 impl SideProject {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         use Technology::*;
         vec![
             SideProject {
@@ -406,15 +406,15 @@ impl SideProject {
     }
 }
 
-pub(crate) struct OpenSourceContribution {
-    pub(crate) repo_name: &'static str,
-    pub(crate) link: &'static str,
-    pub(crate) summary: &'static str,
-    pub(crate) priority: usize,
+pub struct OpenSourceContribution {
+    pub repo_name: &'static str,
+    pub link: &'static str,
+    pub summary: &'static str,
+    pub priority: usize,
 }
 
 impl OpenSourceContribution {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         use Technology::*;
         vec![
             OpenSourceContribution {
