@@ -1,20 +1,17 @@
-.projects {
+.side-projects {
     margin-left: var(--base-margin-left);
     margin-right: var(--base-margin-left);
 
-    .project-container {
+    .side-project-container {
         margin-bottom: 1.125rem;
     }
 
-    .project-header {
+    .side-project-header {
         & > div {
             display: inline-block;
         }
         .project-name {
             font-size: 1.25rem;
-        }
-        .project-link {
-            margin-left: 0.5rem;
         }
     }
 

@@ -35,7 +35,8 @@ $divider-color: #c2c2c2;
     margin-top: 5mm;
 }
 
-html,body{
+html,
+body {
     margin: 0;
     padding: 0;
 }
@@ -62,9 +63,9 @@ body {
 }
 
 hr {
-    height:0; 
-    border:0; 
-    border-top:1px solid; 
+    height: 0;
+    border: 0;
+    border-top: 1px solid;
     border-color: $divider-color;
 }
 
@@ -72,10 +73,11 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-
 @import "title";
 @import "person-details";
 @import "experience";
 @import "languages";
 @import "skills";
 @import "projects";
+@import "side_projects";
+@import "osc";

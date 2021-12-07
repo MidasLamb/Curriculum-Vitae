@@ -1,17 +1,19 @@
 use chrono::NaiveDate;
 
-pub(crate) struct Me {
-    pub(crate) first_name: &'static str,
-    pub(crate) last_name: &'static str,
-    pub(crate) _location: &'static str,
-    pub(crate) _birth_date: NaiveDate,
-    pub(crate) contact_email: &'static str,
-    pub(crate) links: Vec<PersonLink>,
-    pub(crate) scholary_experiences: Vec<ScholaryExperience>,
-    pub(crate) work_experiences: Vec<WorkExperience>,
-    pub(crate) languages: Vec<Language>,
-    pub(crate) skills: Vec<Skill>,
-    pub(crate) projects: Vec<Project>,
+pub struct Me {
+    pub first_name: &'static str,
+    pub last_name: &'static str,
+    pub _location: &'static str,
+    pub _birth_date: NaiveDate,
+    pub contact_email: &'static str,
+    pub links: Vec<PersonLink>,
+    pub scholary_experiences: Vec<ScholaryExperience>,
+    pub work_experiences: Vec<WorkExperience>,
+    pub languages: Vec<Language>,
+    pub skills: Vec<Skill>,
+    pub projects: Vec<Project>,
+    pub side_projects: Vec<SideProject>,
+    pub open_source_contributions: Vec<OpenSourceContribution>,
 }
 
 impl Default for Me {
@@ -28,6 +30,8 @@ impl Default for Me {
             languages: Language::get_all(),
             skills: Skill::get_all(),
             projects: Project::get_all(),
+            side_projects: SideProject::get_all(),
+            open_source_contributions: OpenSourceContribution::get_all(),
         };
 
         me.scholary_experiences.sort_by_key(|k| k.start_date);
@@ -39,11 +43,15 @@ impl Default for Me {
         me.projects.sort_by_key(|k| k.priority);
         me.projects.reverse();
 
+        me.side_projects.sort_by_key(|k| k.priority);
+
+        me.open_source_contributions.sort_by_key(|k| k.priority);
+
         me
     }
 }
 
-pub(crate) enum PersonLink {
+pub enum PersonLink {
     GitHub { username: &'static str },
     LinkedIn { link_name: &'static str },
 }
@@ -61,14 +69,14 @@ impl PersonLink {
         ]
     }
 
-    pub(crate) fn linkify(&self) -> String {
+    pub fn linkify(&self) -> String {
         match self {
             PersonLink::GitHub { username: u } => format!("https://github.com/{}/", u),
             PersonLink::LinkedIn { link_name: l } => format!("https://www.linkedin.com/in/{}/", l),
         }
     }
 
-    pub(crate) fn short_view(&self) -> String {
+    pub fn short_view(&self) -> String {
         match self {
             PersonLink::GitHub { username: u } => format!("/{}/", u),
             PersonLink::LinkedIn { link_name: l } => format!("/in/{}/", l),
@@ -76,13 +84,13 @@ impl PersonLink {
     }
 }
 
-pub(crate) struct ScholaryExperience {
-    pub(crate) start_date: NaiveDate,
-    pub(crate) end_date: Option<NaiveDate>,
-    pub(crate) institution: &'static str, // TODO: Turn into enum?
-    pub(crate) degree: &'static str,      // TODO: Turn into enum?
-    pub(crate) honors: Option<&'static str>, // TODO: Turn into enum?
-    pub(crate) thesis_title: Option<&'static str>,
+pub struct ScholaryExperience {
+    pub start_date: NaiveDate,
+    pub end_date: Option<NaiveDate>,
+    pub institution: &'static str,    // TODO: Turn into enum?
+    pub degree: &'static str,         // TODO: Turn into enum?
+    pub honors: Option<&'static str>, // TODO: Turn into enum?
+    pub thesis_title: Option<&'static str>,
 }
 
 impl ScholaryExperience {
@@ -108,12 +116,12 @@ impl ScholaryExperience {
     }
 }
 
-pub(crate) struct WorkExperience {
-    pub(crate) start_date: NaiveDate,
-    pub(crate) end_date: Option<NaiveDate>,
-    pub(crate) title: &'static str,
-    pub(crate) company: &'static str,
-    pub(crate) summary: &'static str,
+pub struct WorkExperience {
+    pub start_date: NaiveDate,
+    pub end_date: Option<NaiveDate>,
+    pub title: &'static str,
+    pub company: &'static str,
+    pub summary: &'static str,
 }
 
 impl WorkExperience {
@@ -158,13 +166,13 @@ Also training/guiding colleagues in general development practices (PR etiquette,
     }
 }
 
-pub(crate) struct Language {
-    pub(crate) language: &'static str,
-    pub(crate) proficiency: LanguageProficiency,
+pub struct Language {
+    pub language: &'static str,
+    pub proficiency: LanguageProficiency,
 }
 
 impl Language {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         vec![
             Language {
                 language: "English",
@@ -186,7 +194,7 @@ impl Language {
     }
 }
 
-pub(crate) enum LanguageProficiency {
+pub enum LanguageProficiency {
     NativeSpeaker,
     Proficient,
     Basic,
@@ -203,14 +211,14 @@ impl std::string::ToString for LanguageProficiency {
     }
 }
 
-pub(crate) struct Skill {
-    pub(crate) name: &'static str,
-    pub(crate) ability: u8,
-    pub(crate) note: Option<SkillNote>,
+pub struct Skill {
+    pub name: &'static str,
+    pub ability: u8,
+    pub note: Option<SkillNote>,
 }
 
 impl Skill {
-    pub(crate) fn get_all() -> Vec<Skill> {
+    pub fn get_all() -> Vec<Skill> {
         vec![
             Skill {
                 name: "C#",
@@ -256,7 +264,7 @@ impl Skill {
     }
 }
 
-pub(crate) enum SkillNote {
+pub enum SkillNote {
     AutoDidact,
 }
 
@@ -269,16 +277,16 @@ impl std::string::ToString for SkillNote {
     }
 }
 
-pub(crate) struct Project {
-    pub(crate) name: &'static str,
-    pub(crate) used_technologies: Vec<Technology>,
-    pub(crate) link: Option<&'static str>,
-    pub(crate) summary: &'static str,
-    pub(crate) priority: usize,
+pub struct Project {
+    pub name: &'static str,
+    pub used_technologies: Vec<Technology>,
+    pub link: Option<&'static str>,
+    pub summary: &'static str,
+    pub priority: usize,
 }
 
 impl Project {
-    pub(crate) fn get_all() -> Vec<Self> {
+    pub fn get_all() -> Vec<Self> {
         use Technology::*;
         vec![
             Project {
@@ -340,7 +348,7 @@ Further growth is stunted because the Wiki has been moved to a new platform whic
     }
 }
 
-pub(crate) enum Technology {
+pub enum Technology {
     PHP,
     Laravel,
     Bootstrap,
@@ -372,5 +380,81 @@ impl std::string::ToString for Technology {
             Technology::Fuzzing => "Fuzzing",
         };
         v.to_owned()
+    }
+}
+
+pub struct SideProject {
+    pub name: &'static str,
+    pub used_technologies: Vec<Technology>,
+    pub summary: &'static str,
+    pub priority: usize,
+}
+impl SideProject {
+    pub fn get_all() -> Vec<Self> {
+        use Technology::*;
+        vec![
+            SideProject {
+                name: "SQLite clone in Rust",
+                used_technologies: vec![Rust],
+                summary: "Created a small POC that could read and update an SQLite file, as long as it didn't need to update the B-Tree. A remnant of this side project can be found in my crate sqlite_varint.",
+                priority: 1
+            },
+            SideProject {
+                name: "Re-implement company internal RPC in Rust",
+                used_technologies: vec![Rust],
+                summary: "Re-implemented an internal RPC protocol in Rust, making use of bindgen to port message definitions. And using tokio_codec as a basis to implement communication.",
+                priority: 2
+            },
+            SideProject {
+                name: "Create CLI to automate repetitive tasks",
+                used_technologies: vec![Rust],
+                summary: "Create a CLI using clap to automate repetitive tasks that were required during my day-to-day work at Dover.",
+                priority: 2
+            }
+        ]
+    }
+}
+
+pub struct OpenSourceContribution {
+    pub repo_name: &'static str,
+    pub link: &'static str,
+    pub summary: &'static str,
+    pub priority: usize,
+}
+
+impl OpenSourceContribution {
+    pub fn get_all() -> Vec<Self> {
+        vec![
+            OpenSourceContribution {
+                repo_name: "rust-lang/rust",
+                link: "https://github.com/rust-lang/rust/pull/83535/files",
+                summary: "Fixed a small ICE.",
+                priority: 1
+            },
+            OpenSourceContribution {
+                repo_name: "Azure/azure-sdk-for-rust",
+                link: "https://github.com/Azure/azure-sdk-for-rust/pulls?q=is%3Apr+author%3AMidasLamb",
+                summary: "Fixed misalignment between REST api & implementation in the SDK (also fixed small other issues in other PRs)",
+                priority: 2
+            },
+            OpenSourceContribution {
+                repo_name: "wasmerio/wasmer",
+                link: "https://github.com/wasmerio/wasmer/pulls?q=is%3Apr+author%3AMidasLamb",
+                summary: "Made modifications towards getting the wasmer runtime up & running for 32bit Windows machines.",
+                priority: 3
+            },
+            OpenSourceContribution {
+                repo_name: "connorskees/grass",
+                link: "https://github.com/connorskees/grass/pulls?q=is%3Apr+author%3AMidasLamb+",
+                summary: "Fix small issues found by fuzzing against the official Sass implementation (dart-sass)",
+                priority: 4
+            },
+            OpenSourceContribution {
+                repo_name: "async-graphql/async-graphql",
+                link: "https://github.com/async-graphql/async-graphql/pull/232",
+                summary: "Small performance improvement",
+                priority: 5
+            },
+        ]
     }
 }

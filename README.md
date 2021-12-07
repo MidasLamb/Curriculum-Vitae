@@ -7,4 +7,7 @@ When creating earlier versions of my CV, I always found it annoying that I had t
 To combat this issue, I opted for a separation of data and representation, by turning my CV into a website. Now there is a separate part for data, and a separate part for representation, meaning I can update one or the other (or both).
 
 ## Stack
-This CV is created with a Rust stack. It compiles to wasm which will build up the CV once loaded. The css is compiled from sass with the help of `grass`, which is a Rust implementation of a sass compiler.
+This CV is created with a Rust stack. It compiles to wasm which will build up the CV once loaded. 
+
+## Development
+Install `trunk` and run `trunk serve`.

@@ -2,7 +2,8 @@
     margin-left: var(--base-margin-left);
     margin-right: var(--base-margin-left);
 
-    .experience-container, .education-container {
+    .experience-container,
+    .education-container {
         position: relative;
     }
 
@@ -36,7 +37,7 @@
             font-weight: 500;
         }
 
-        .summary {
+        summary {
             margin-left: 1.5rem;
             font-size: 0.9rem;
         }
@@ -60,5 +61,4 @@
             font-size: 0.9em;
         }
     }
-
 }
