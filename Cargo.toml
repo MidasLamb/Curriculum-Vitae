@@ -7,4 +7,4 @@ version = "0.1.0"
 
 [dependencies]
 chrono = "0.4"
-yew = "0.18"
+yew = "0.20"
