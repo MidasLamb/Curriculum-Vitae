@@ -256,9 +256,9 @@ impl Htmlify for data::Skill {
                     <span class="name">{self.name}</span>
                     {note}
                 </div>
-                <div class="ability">
-                    {ability}
-                </div>
+                // <div class="ability">
+                //     {ability}
+                // </div>
             </div>
         }
     }

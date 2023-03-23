@@ -127,15 +127,15 @@ pub struct WorkExperience {
 impl WorkExperience {
     fn get_all() -> Vec<Self> {
         vec![
-            WorkExperience {
-                start_date: NaiveDate::from_ymd(2015, 01, 01),
-                end_date: Some(NaiveDate::from_ymd(2016, 12, 31)),
-                title: "Software Tester",
-                company: "Bringme",
-                summary: r"Responsible for manually testing (including regression tests) of mobile and web applications.
-Found a lot of edge-cases, which made me the least favorite tester of the developers.
-Bringme introduced me to agile development.",
-            },
+            //             WorkExperience {
+            //                 start_date: NaiveDate::from_ymd(2015, 01, 01),
+            //                 end_date: Some(NaiveDate::from_ymd(2016, 12, 31)),
+            //                 title: "Software Tester",
+            //                 company: "Bringme",
+            //                 summary: r"Responsible for manually testing (including regression tests) of mobile and web applications.
+            // Found a lot of edge-cases, which made me the least favorite tester of the developers.
+            // Bringme introduced me to agile development.",
+            //             },
             WorkExperience {
                 start_date: NaiveDate::from_ymd(2017, 07, 20),
                 end_date: Some(NaiveDate::from_ymd(2018, 06, 30)),
@@ -156,11 +156,19 @@ maintaining a Web Server, investigating improvements, and working on the fronten
             },
             WorkExperience {
                 start_date: NaiveDate::from_ymd(2021, 08, 1),
-                end_date: None,
+                end_date: Some(NaiveDate::from_ymd(2022, 4, 1)),
                 title: "Senior Software Engineer",
                 company: "Dover Fueling Solutions",
                 summary: r"Responsible for migrating data management from C++ to C# in a POS system. Ensure data-synchronicity between the POS and the Cloud.
 Also training/guiding colleagues in general development practices (PR etiquette, Agile, usage of git) as well as more project-specific trainings in backend and frontend.",
+            },
+            WorkExperience {
+                start_date: NaiveDate::from_ymd(2022, 04, 04),
+                end_date: None,
+                title: "Software Engineer",
+                company: "Twintag",
+                summary: r"Platform engineer responsible for ensuring smooth and scalable operations of the backend and management website, while developing new features. Learned Kubernetes and introduced 
+more observability, through opentelemetry tracing and using honeycomb.io for analyzing it. Created a Rust proxy to handle Authorization through OpenFGA. Improved DevEx by creating a GraphQL interface for the backend.",
             },
         ]
     }
@@ -231,6 +239,16 @@ impl Skill {
                 note: Some(SkillNote::AutoDidact),
             },
             Skill {
+                name: "Go",
+                ability: 8,
+                note: Some(SkillNote::AutoDidact),
+            },
+            Skill {
+                name: "Kubernetes",
+                ability: 8,
+                note: Some(SkillNote::AutoDidact),
+            },
+            Skill {
                 name: "Git",
                 ability: 7,
                 note: None,
@@ -250,11 +268,11 @@ impl Skill {
                 ability: 6,
                 note: None,
             },
-            Skill {
-                name: "Java",
-                ability: 6,
-                note: None,
-            },
+            // Skill {
+            //     name: "Java",
+            //     ability: 6,
+            //     note: None,
+            // },
             Skill {
                 name: "Information Visualisation",
                 ability: 6,
@@ -290,9 +308,16 @@ impl Project {
         use Technology::*;
         vec![
             Project {
+                name: "Axum Strangler",
+                used_technologies: vec![Rust],
+                link: Some("https://crates.io/crates/axum-strangler/0.4.0-rc.2"),
+                summary: "A crate to use with the Rust Axum web framework, in order to more easily apply the Strangler Fig pattern if you want to replace a service with a Rust version.",
+                priority: 5
+            },
+            Project {
                 name: "Speaker at RustConf 2021",
                 used_technologies: vec![Rust, Fuzzing],
-                link: Some("https://rustconf.com/speakers/midas-lambrichts"),
+                link: Some("https://2021.rustconf.com/speakers/midas-lambrichts"),
                 summary: "Give a talk at RustConf 2021 about how one can use Fuzzing to drive development for a domain while having limited domain knowledge.",
                 priority: 5
             },
@@ -425,6 +450,12 @@ pub struct OpenSourceContribution {
 impl OpenSourceContribution {
     pub fn get_all() -> Vec<Self> {
         vec![
+            OpenSourceContribution {
+                repo_name: "openfga/openfga",
+                link: "https://github.com/openfga/openfga/pull/210",
+                summary: "Implemented a MySQL storage backend",
+                priority: 2
+            },
             OpenSourceContribution {
                 repo_name: "rust-lang/rust",
                 link: "https://github.com/rust-lang/rust/pull/83535/files",
