@@ -164,11 +164,19 @@ Also training/guiding colleagues in general development practices (PR etiquette,
             },
             WorkExperience {
                 start_date: NaiveDate::from_ymd(2022, 04, 04),
-                end_date: None,
+                end_date: Some(NaiveDate::from_ymd(2023, 06, 01)),
                 title: "Software Engineer",
                 company: "Twintag",
                 summary: r"Platform engineer responsible for ensuring smooth and scalable operations of the backend and management website, while developing new features. Learned Kubernetes and introduced 
 more observability, through opentelemetry tracing and using honeycomb.io for analyzing it. Created a Rust proxy to handle Authorization through OpenFGA. Improved DevEx by creating a GraphQL interface for the backend.",
+            },
+            WorkExperience {
+                start_date: NaiveDate::from_ymd(2023, 06, 02),
+                end_date: None,
+                title: "Senior Software Engineer",
+                company: "Alludo",
+                summary: r"Linking with CEF through a Rust wrapper, communicating with a python backend. Responsible for ensuring smooth operations and deployments of the product onto Azure.
+Also responsible for ensuring that the product is secure. Added metrics and tracing to the product, enabling us to have alerts in case application specific errors pop up.",
             },
         ]
     }
@@ -321,14 +329,14 @@ impl Project {
                 summary: "Give a talk at RustConf 2021 about how one can use Fuzzing to drive development for a domain while having limited domain knowledge.",
                 priority: 5
             },
-            Project {
-                name: "KBBC T&T Turnhout",
-                used_technologies: vec![PHP, Laravel, Bootstrap, JavaScript, CSS3, HTML5, VueJs],
-                link: Some("https://github.com/MidasLamb/TTTurnhout"),
-                summary: "A Laravel Application which reads data from Basketbal Vlaanderen, and displays it in a userfriendly manner.
-This is currently being rebuild in a complete Rust stack (async-graphql, actix, yew, graphql-client)",
-                priority: 0
-            },
+//            Project {
+//                name: "KBBC T&T Turnhout",
+//                used_technologies: vec![PHP, Laravel, Bootstrap, JavaScript, CSS3, HTML5, VueJs],
+//                link: Some("https://github.com/MidasLamb/TTTurnhout"),
+//                summary: "A Laravel Application which reads data from Basketbal Vlaanderen, and displays it in a userfriendly manner.
+//This is currently being rebuild in a complete Rust stack (async-graphql, actix, yew, graphql-client)",
+//                priority: 0
+//            },
             Project {
                 name: "Ekonomika KD",
                 used_technologies: vec![PHP, Laravel, Bootstrap, JavaScript, CSS3, HTML5],

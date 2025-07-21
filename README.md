@@ -1,5 +1,5 @@
 # Midas Lambrichts: Curriculum Vitae
-My codified CV.
+My codified CV, served at [http://cv.midas.lambrichts.be/](http://cv.midas.lambrichts.be/).
 
 ## Rationale
 When creating earlier versions of my CV, I always found it annoying that I had to take care of what was in there and how it looked at once. Wanting to change how something looked often meant I needed to also update the look of the similar/related items.

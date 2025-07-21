@@ -85,17 +85,17 @@ impl Component for Model {
                                 {scholary_experience}
                             </div>
                         </div>
-                        <hr/>
+                    </main>
+                </div>
+                <div class="page">
+                    <main>
                         <div class="languages">
                             <h2>{"Languages"}</h2>
                             <div class="container">
                                 {languages}
                             </div>
                         </div>
-                    </main>
-                </div>
-                <div class="page">
-                    <main>
+                        <hr/>
                         <div class="skills">
                             <h2>{"Skills"}</h2>
                             <div class="container">
